@@ -1,8 +1,14 @@
 package com.covid_booking.covid.controller;
 
 import java.net.http.HttpResponse.ResponseInfo;
+import java.util.List;
 
 import javax.websocket.server.PathParam;
+
+import com.covid_booking.covid.model.Address;
+import com.covid_booking.covid.model.Addresscontainer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,19 +35,19 @@ public class MapsController {
         return res;
     }
 
-    // @GetMapping("/revgeocode/{latitude:.+},{longitude:.+}")
-    // public ResponseEntity<String> getReverseGeoCode(@PathVariable String latitude, @PathVariable String longitude)
-    // {
-    //     System.out.println(latitude);
-    //     System.out.println(longitude);
-    //     ResponseEntity<String> res = restTemplate.getForEntity("https://api.tomtom.com/search/2/reverseGeocode/37.8328%2C122.27669.json?key="+ apiKey, String.class);
-    //     return res;
-    // }
-    @GetMapping("/revgeocode/data")
-    public ResponseEntity<String> getReverseGeoCode()
+    @GetMapping("/revgeocode/{latitude:.+},{longitude:.+}")
+    public Addresscontainer getReverseGeoCode(@PathVariable String latitude, @PathVariable String longitude)
     {
-        ResponseEntity<String> res = restTemplate.getForEntity("https://api.tomtom.com/search/2/reverseGeocode/crossStreet/37.8328%2C122.27669.json?key="+ apiKey, String.class);
+        // System.out.println(latitude);
+        // System.out.println(longitude);
+        Addresscontainer res = restTemplate.getForObject("https://api.tomtom.com/search/2/reverseGeocode/"+latitude+","+longitude+".json?key="+ apiKey, Addresscontainer.class);
         return res;
     }
+    // @GetMapping("/revgeocode/data/{id}")
+    // public Addresscontainer reverseGeoCode(@RequestParam String position)
+    // {
+    //     Addresscontainer res = restTemplate.getForObject("https://api.tomtom.com/search/2/reverseGeocode/crossStreet/"+position+".json?key="+ apiKey, Addresscontainer.class);
+    //     return res;
+    // }
 
 }
