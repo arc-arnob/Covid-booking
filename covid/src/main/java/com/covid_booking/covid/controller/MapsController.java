@@ -7,6 +7,7 @@ import javax.websocket.server.PathParam;
 
 import com.covid_booking.covid.model.Address;
 import com.covid_booking.covid.model.Addresscontainer;
+import com.covid_booking.covid.model.FuzzySearch;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,9 +30,9 @@ public class MapsController {
     RestTemplate restTemplate;
 
     @GetMapping("/geocode/{address}")
-    public ResponseEntity<String> getGeoCode(@PathVariable String address){
+    public FuzzySearch getGeoCode(@PathVariable String address){
         
-        ResponseEntity<String> res = restTemplate.getForEntity("https://api.tomtom.com/search/2/geocode/" + address +".json?key="+ apiKey, String.class);
+        FuzzySearch res = restTemplate.getForObject("https://api.tomtom.com/search/2/geocode/" + address +".json?key="+ apiKey, FuzzySearch.class);
         return res;
     }
 

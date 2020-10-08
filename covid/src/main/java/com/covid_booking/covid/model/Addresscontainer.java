@@ -1,16 +1,9 @@
 package com.covid_booking.covid.model;
 
 import java.util.List;
-import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Addresscontainer {
-    private String streetName;
-    private String municipality;
-    private String countrySubdivisionName;
-    private String postalCode;
-    private String country;
+    
     private List<Address> addresses;
 
 
