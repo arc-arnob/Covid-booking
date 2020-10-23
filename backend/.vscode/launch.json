@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CovidApplication<covid>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.covid_booking.covid.CovidApplication",
+            "projectName": "covid",
+            "args": ""
+        }
+    ]
+}
