@@ -3,6 +3,8 @@ package com.booking.booking_per_user.controller;
 import java.util.List;
 
 import com.booking.booking_per_user.model.Coordinates;
+import com.booking.booking_per_user.model.Document;
+import com.booking.booking_per_user.model.Location;
 import com.booking.booking_per_user.service.LocationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +26,15 @@ public class BookingController {
 
     @GetMapping("/allmarkers")
     @CrossOrigin(origins = "http://localhost:3000")
-    public List<Coordinates> getAllMarkers(){
+    public List<Document> getAllMarkers(){
 
         return this.locationService.getAllMarkers();
     }
 
     @PostMapping(value="/create")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Coordinates createMarker(@RequestBody Coordinates coordinate) {
-        return locationService.createMarker(coordinate);
+    public Document ceateMarker(@RequestBody Document document) {
+        return locationService.createMarker(document);
     }
     
 }
