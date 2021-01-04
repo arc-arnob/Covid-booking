@@ -6,7 +6,8 @@
     border: 3px solid #73AD21;
 }
 .locationinfo{
-    margin-top: 100px;
-    margin-left: 20px;
+    position: absolute;
+    margin-top:-400px;
+    margin-left: 820px;
 }
 .rowC{display:flex; flex-direction:row};

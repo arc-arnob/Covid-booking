@@ -9,6 +9,16 @@
             "mainClass": "com.covid_booking.covid.CovidApplication",
             "projectName": "covid",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BookingPerUserApplication<booking_per_user>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.booking.booking_per_user.BookingPerUserApplication",
+            "projectName": "booking_per_user",
+            "args": ""
         }
     ]
 }

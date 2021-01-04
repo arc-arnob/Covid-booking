@@ -15,9 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default class App extends Component {
-  handleSubmit =() =>{
-    console.log("submitted")
-  }
+  
 
 
     render() {
@@ -25,7 +23,7 @@ export default class App extends Component {
       return(
         <div className="rowC">
           <MapComponent />
-          <LocationInfo onSubmit={this.handleSubmit}/>
+          
         </div>
       )
 
