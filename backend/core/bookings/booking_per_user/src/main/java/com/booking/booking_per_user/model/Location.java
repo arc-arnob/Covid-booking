@@ -5,7 +5,7 @@ import java.util.List;
 public class Location { // Location is a collection
 
     private String type;
-    private List<Double> coordinate;
+    private List<Double> coordinates;
 
     public String getType() {
         return type;
@@ -16,16 +16,16 @@ public class Location { // Location is a collection
     }
 
     public List<Double> getCoordinate() {
-        return coordinate;
+        return coordinates;
     }
 
     public void setCoordinates(List<Double> coordinate) {
-        this.coordinate = coordinate;
+        this.coordinates = coordinate;
     }
 
     public Location(String type, List<Double> coordinate) {
         this.type = type;
-        this.coordinate = coordinate;
+        this.coordinates = coordinate;
     }
     
 }

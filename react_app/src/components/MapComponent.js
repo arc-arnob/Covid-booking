@@ -46,7 +46,7 @@ class MapComponent extends Component {
         address: "", // This is recieved from backend after rev-geocoding
         location: {
           type:"Point", // for now it hardcoded
-          coordinate:[]//current_marker will be stored for latest marker booking
+          coordinates:[]//current_marker will be stored for latest marker booking
         }
       }
 
@@ -96,7 +96,7 @@ class MapComponent extends Component {
 
           location: {
             ...prevState.location,
-            coordinate : coordinates_arr
+            coordinates : coordinates_arr
           }
           
         }),() =>{
