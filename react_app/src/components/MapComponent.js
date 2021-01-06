@@ -43,8 +43,12 @@ class MapComponent extends Component {
         markers: [[51.505,-0.09]], // This is default marker for line 118 and also marker directory
         current_marker:[], // stores latest marker
         position: "", //This is for marker, concat of "lat,lon"
-        address: "" // This is recieved from backend after rev-geocoding
+        address: "", // This is recieved from backend after rev-geocoding
+        location: {
+          type:"Point", // for now it hardcoded
+          coordinate:[]//current_marker will be stored for latest marker booking
         }
+      }
 
        // Handles when clicked on mapcomponent anywhere.
       handleClick = (e) => {
@@ -62,7 +66,8 @@ class MapComponent extends Component {
         var lat  = this.state.current_marker.lat.toString();
         var lng  = this.state.current_marker.lng.toString();
         var pos = lat.concat(",",lng)
-        console.log(pos); //Debug
+        //console.log(this.state.current_marker); //Debug latlng{} w
+        //console.log(this.state.current_marker.lng); // Debug double w
         this.setState({
           position: pos 
         })
@@ -80,11 +85,45 @@ class MapComponent extends Component {
         console.log(e.markers) // ??? What is e.markers doing?
       }
       
-      handleSubmit =() =>{
-        console.log("submitted")
+     handleSubmit = (e) =>{
+        console.log(this.state.current_marker); // Debug
+        console.log(this.state.current_marker.lng); // Debug double w
+        var coordinates_arr = []
+        coordinates_arr[0] = this.state.current_marker.lng;
+        coordinates_arr[1] = this.state.current_marker.lat;
+        console.log(coordinates_arr)
+        this.setState(prevState =>({
+
+          location: {
+            ...prevState.location,
+            coordinate : coordinates_arr
+          }
+          
+        }),() =>{
+          //callback, kept axios call in callback since setstate do not immediately updates state, so callback(google it)
+          let document = {
+            location:this.state.location
+          }
+          console.log(document)
+          this.postLocationToServer(document);
+        })
+        console.log(this.state.location);
+        
       }
 
-      // Send Data to Server
+      // Send Location data to 8082
+      postLocationToServer = async (data)=>{
+        await axios.post(`http://localhost:8082/booking/create`,data).then(
+          (response) => {
+            toast.success("Booking confirmed");
+          },
+          (error) => {
+            toast.error("Booking Failed");
+          }
+        )
+      }
+
+      // Send Data to Server 8081
     postDataToServer= async (data)=>{
         await axios.get(`${base_url}/revgeocode/${this.state.position}`).then(
             (response)=>{
@@ -102,7 +141,7 @@ class MapComponent extends Component {
                 })
                 toast.error("Something is wrong");
             }
-            )
+          )
     };
       
     render() {
